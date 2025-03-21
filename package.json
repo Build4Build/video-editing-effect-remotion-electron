@@ -1,0 +1,46 @@
+{
+  "name": "video-editing-effect-remotion-electron",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "tsc && electron .",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "dist": "electron-builder",
+    "remotion": "remotion studio src/remotion/index.tsx",
+    "render": "ts-node src/renderer/render.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pH-7/video-editing-effect-remotion-electron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pH-7/video-editing-effect-remotion-electron/issues"
+  },
+  "homepage": "https://github.com/pH-7/video-editing-effect-remotion-electron#readme",
+  "description": "",
+  "dependencies": {
+    "@ffmpeg/core": "^0.12.10",
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@remotion/cli": "^4.0.279",
+    "@remotion/renderer": "^4.0.279",
+    "@types/node": "^22.13.11",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "axios": "^1.8.4",
+    "electron": "^35.0.3",
+    "electron-builder": "^25.1.8",
+    "electron-store": "^10.0.1",
+    "ffmpeg-static": "^5.2.0",
+    "node-fetch": "^3.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.279",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}

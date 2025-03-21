@@ -1,0 +1,60 @@
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+out/
+build/
+.remotion/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Electron-builder
+.electron-builder/
+
+# Temporary files
+tmp/
+temp/
+
+# Video files and assets that shouldn't be in git
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
+src/remotion/assets/**/*.mp4
+src/remotion/assets/**/*.mp3
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local cache for downloaded stock footage
+**/.video-editor-assets/ 

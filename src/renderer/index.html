@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Editor - Auto Effects</title>
+  <style>
+    :root {
+      --primary: #6a5acd;
+      --primary-light: #8677de;
+      --secondary: #3d35a8;
+      --dark: #1f1d36;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --lightgray: #e9ecef;
+      --danger: #dc3545;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .main-content {
+      display: flex;
+      flex: 1;
+      gap: 20px;
+    }
+    
+    .video-section {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .controls-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .video-preview {
+      flex: 1;
+      background-color: black;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .video-preview video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .video-preview img.placeholder {
+      width: 100px;
+      opacity: 0.5;
+    }
+    
+    .button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .button:hover {
+      background-color: var(--primary-light);
+    }
+    
+    .button:disabled {
+      background-color: var(--gray);
+      cursor: not-allowed;
+    }
+    
+    .button.secondary {
+      background-color: transparent;
+      border: 1px solid var(--lightgray);
+    }
+    
+    .button.secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .button-row {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .effect-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .effect-item {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .effect-item.selected {
+      background-color: var(--primary);
+    }
+    
+    .effect-item:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s;
+    }
+    
+    .status {
+      font-size: 14px;
+      margin-top: 10px;
+      color: var(--lightgray);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Auto Video Effects</h1>
+      <div class="button-row">
+        <button id="loadRecentBtn" class="button secondary">Recent Projects</button>
+      </div>
+    </header>
+    
+    <div class="main-content">
+      <div class="video-section">
+        <div class="video-preview" id="videoPreview">
+          <img src="./placeholder.svg" alt="Upload a video" class="placeholder" id="placeholderImage">
+        </div>
+        <div class="button-row">
+          <button id="selectVideoBtn" class="button">Select Video</button>
+          <button id="previewBtn" class="button secondary" disabled>Preview</button>
+        </div>
+      </div>
+      
+      <div class="controls-panel">
+        <div class="form-group">
+          <label>Effects</label>
+          <div class="effect-list" id="effectsList">
+            <div class="effect-item" data-effect="zoom-in-start">Zoom In (Start)</div>
+            <div class="effect-item" data-effect="color-boost">Color Boost</div>
+            <div class="effect-item" data-effect="slow-motion">Slow Motion</div>
+            <div class="effect-item" data-effect="ken-burns">Ken Burns Effect</div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Background Music</label>
+          <div class="effect-list" id="musicList">
+            <div class="effect-item" data-music="upbeat">Upbeat</div>
+            <div class="effect-item" data-music="cinematic">Cinematic</div>
+            <div class="effect-item" data-music="none">No Music</div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <button id="exportBtn" class="button" disabled>Export Video</button>
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="status" id="statusText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="./renderer.js"></script>
+</body>
+</html> 

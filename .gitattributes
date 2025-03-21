@@ -1,0 +1,50 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# TypeScript and JavaScript files
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.json text
+
+# HTML and CSS files
+*.html text
+*.css text
+*.scss text
+
+# SVG treated as binary (no line-ending conversion)
+*.svg binary
+
+# Graphics
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# Audio files
+*.mp3 binary
+*.wav binary
+
+# Video files
+*.mp4 binary
+*.mov binary
+*.avi binary
+
+# Package management
+package.json text
+package-lock.json text
+yarn.lock text
+
+# Electron specific files
+*.asar binary
+
+# Remotion specific
+remotion.config.js text
+
+# Force batch scripts to use CRLF
+*.bat text eol=crlf
+
+# Force bash scripts to use LF
+*.sh text eol=lf 
