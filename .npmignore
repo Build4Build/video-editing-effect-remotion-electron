@@ -1,0 +1,51 @@
+# Source files
+src/
+
+# TypeScript config
+tsconfig.json
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Development files
+.vscode/
+.idea/
+*.log
+logs/
+temp/
+tmp/
+
+# Test files
+test/
+__tests__/
+*.test.ts
+*.spec.ts
+
+# Build scripts
+scripts/
+config/
+
+# Assets that shouldn't be published
+assets/source/
+assets/raw/
+
+# Example videos
+*.mp4
+*.mov
+*.avi
+
+# Documentation files
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# Configuration for various tools
+.eslintrc*
+.prettierrc*
+.editorconfig 

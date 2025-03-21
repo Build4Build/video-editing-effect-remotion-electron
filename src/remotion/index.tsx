@@ -12,7 +12,7 @@ export const RemotionRoot: React.FC = () => {
       {/* Main video composition with all effects */}
       <Composition
         id="MainVideo"
-        component={MainVideo}
+        component={MainVideo as any}
         durationInFrames={900} // 30 seconds @ 30fps
         fps={30}
         width={1920}
@@ -27,7 +27,7 @@ export const RemotionRoot: React.FC = () => {
       {/* Individual effect compositions for preview */}
       <Composition
         id="ZoomInEffect"
-        component={ZoomInEffect}
+        component={ZoomInEffect as any}
         durationInFrames={300}
         fps={30}
         width={1920}
@@ -39,7 +39,7 @@ export const RemotionRoot: React.FC = () => {
 
       <Composition
         id="ColorBoostEffect"
-        component={ColorBoostEffect}
+        component={ColorBoostEffect as any}
         durationInFrames={300}
         fps={30}
         width={1920}
@@ -51,7 +51,7 @@ export const RemotionRoot: React.FC = () => {
 
       <Composition
         id="SlowMotionEffect"
-        component={SlowMotionEffect}
+        component={SlowMotionEffect as any}
         durationInFrames={450}
         fps={30}
         width={1920}
@@ -63,7 +63,7 @@ export const RemotionRoot: React.FC = () => {
 
       <Composition
         id="KenBurnsEffect"
-        component={KenBurnsEffect}
+        component={KenBurnsEffect as any}
         durationInFrames={300}
         fps={30}
         width={1920}

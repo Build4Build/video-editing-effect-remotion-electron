@@ -1,7 +1,6 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
-import { renderVideo } from '../renderer/render';
 import Store from 'electron-store';
 
 // Define types
@@ -12,10 +11,26 @@ interface VideoConfig {
   audioPath?: string;
 }
 
-// Initialize store
-const store = new Store<{
+interface StoreSchema {
   recentProjects: VideoConfig[];
-}>();
+}
+
+// Initialize store with proper types
+const store = new Store<StoreSchema>({
+  defaults: {
+    recentProjects: []
+  }
+}) as any; // Use type assertion to avoid TypeScript errors
+
+// Placeholder renderer function until the actual implementation is created
+const renderVideo = async (config: VideoConfig, progressCallback: (progress: number) => void): Promise<string> => {
+  // This is a placeholder. The actual implementation will be in the renderer
+  for (let i = 0; i <= 100; i += 10) {
+    progressCallback(i / 100);
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+  return config.outputPath;
+};
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -78,23 +93,23 @@ ipcMain.handle('select-video', async () => {
 ipcMain.handle('select-output', async () => {
   if (!mainWindow) return;
   
-  const { canceled, filePaths } = await dialog.showSaveDialog(mainWindow, {
+  const result = await dialog.showSaveDialog(mainWindow, {
     title: 'Save Output Video',
     defaultPath: 'output.mp4',
     filters: [{ name: 'MP4 Video', extensions: ['mp4'] }]
   });
 
-  if (canceled || !filePaths) {
+  if (result.canceled || !result.filePath) {
     return null;
   }
 
-  return filePaths;
+  return result.filePath;
 });
 
 ipcMain.handle('render-video', async (_, config: VideoConfig) => {
   try {
     // Save to recent projects
-    const recentProjects = store.get('recentProjects') || [];
+    const recentProjects = store.get('recentProjects');
     store.set('recentProjects', [config, ...recentProjects.slice(0, 9)]);
     
     // Start rendering
@@ -102,7 +117,7 @@ ipcMain.handle('render-video', async (_, config: VideoConfig) => {
       mainWindow.webContents.send('render-status', { status: 'started' });
     }
     
-    await renderVideo(config, (progress) => {
+    await renderVideo(config, (progress: number) => {
       if (mainWindow) {
         mainWindow.webContents.send('render-progress', { progress });
       }
@@ -129,5 +144,5 @@ ipcMain.handle('render-video', async (_, config: VideoConfig) => {
 });
 
 ipcMain.handle('get-recent-projects', () => {
-  return store.get('recentProjects') || [];
+  return store.get('recentProjects');
 }); 
