@@ -31,7 +31,7 @@ A desktop application for automatic video editing with visual effects and music.
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/video-editing-effect-remotion-electron.git
+   git clone https://github.com/pH-7/video-editing-effect-remotion-electron.git
    cd video-editing-effect-remotion-electron
    ```
 
@@ -69,6 +69,26 @@ npm run dist
 - `/src/remotion` - Remotion video compositions
 - `/src/remotion/compositions/effects` - Individual video effects
 
+
+## Who Baked This?
+
+**Pierre-Henry Soria** — a super passionate and enthusiastic software engineer.
+A genuine lover of cheese, coffee, and chocolate.
+You can reach me at [pH7.me](https://ph7.me).
+
+[![Pierre-Henry Soria](https://s.gravatar.com/avatar/a210fe61253c43c869d71eaed0e90149?s=200)](https://ph7.me "Pierre-Henry Soria’s personal website")
+
+
+Enjoying the project? **[Support me with a coffee](https://ko-fi.com/phenry)** — my go-to brew is an almond flat white.
+
+[![YouTube Tech Videos][youtube-icon]](https://www.youtube.com/@pH7Programming "My YouTube Tech Channel") [![@phenrysay][x-icon]](https://x.com/phenrysay "Follow Me on X") [![pH-7][github-icon]](https://github.com/pH-7 "Follow Me on GitHub")
+
+
 ## License
 
-MIT 
+This ElectronJS app is generously distributed under the MIT License.
+
+<!-- GitHub's Markdown reference links -->
+[x-icon]: https://img.shields.io/badge/x-000000?style=for-the-badge&logo=x
+[youtube-icon]: https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white
+[github-icon]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
