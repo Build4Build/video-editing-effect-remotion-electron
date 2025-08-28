@@ -2,6 +2,8 @@
 
 A desktop application for automatic video editing with visual effects and music. Built with Electron, TypeScript, and Remotion.
 
+![Demo Video Editing App](assets/media/demo-video-editing-app.png "Video Editor Application Interface - Auto Effects Tool")
+
 ## Features
 
 - 🎬 **Upload Local Videos**: Select and import your videos for editing

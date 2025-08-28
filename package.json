@@ -1,10 +1,11 @@
 {
   "name": "video-editing-effect-remotion-electron",
   "version": "1.0.0",
-  "main": "dist/main.js",
+  "main": "dist/main/main.js",
   "scripts": {
-    "start": "tsc && electron .",
-    "build": "tsc",
+    "start": "npm run build && electron .",
+    "build": "tsc && npm run copy-static",
+    "copy-static": "cp src/renderer/index.html dist/renderer/ && cp -r public/assets dist/",
     "watch": "tsc -w",
     "dist": "electron-builder",
     "remotion": "remotion studio src/remotion/index.tsx",
@@ -32,7 +33,7 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "axios": "^1.8.4",
-    "electron": "^35.0.3",
+    "electron": "^37.4.0",
     "electron-builder": "^25.1.8",
     "electron-store": "^10.0.1",
     "ffmpeg-static": "^5.2.0",
